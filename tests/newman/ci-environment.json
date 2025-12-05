@@ -1,0 +1,13 @@
+{
+  "id": "threshold-api-ci",
+  "name": "Threshold API - CI/CD",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "http://app:8080",
+      "type": "default",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment"
+}

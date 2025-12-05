@@ -1,0 +1,782 @@
+{
+  "info": {
+    "name": "Threshold Configuration API",
+    "description": "Newman integration tests for the Narrative Engine Threshold Configuration API.\n\nTests threshold inheritance, validation, and configuration management.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "{{baseUrl}}"
+    }
+  ],
+  "item": [
+    {
+      "name": "World Registration",
+      "item": [
+        {
+          "name": "Register Fantasy World",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response contains world details', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql('created');",
+                  "    pm.expect(jsonData.worldId).to.eql('middle-earth');",
+                  "    pm.expect(jsonData.worldType).to.eql('FANTASY');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"worldId\": \"middle-earth\",\n    \"worldType\": \"FANTASY\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/thresholds/worlds",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "thresholds", "worlds"]
+            }
+          }
+        },
+        {
+          "name": "Register Horror World",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Horror world created', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.worldId).to.eql('haunted-realm');",
+                  "    pm.expect(jsonData.worldType).to.eql('HORROR');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"worldId\": \"haunted-realm\",\n    \"worldType\": \"HORROR\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/thresholds/worlds",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "thresholds", "worlds"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Region Registration",
+      "item": [
+        {
+          "name": "Register Shire Region",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Region created successfully', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql('created');",
+                  "    pm.expect(jsonData.regionId).to.eql('shire');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"worldId\": \"middle-earth\",\n    \"regionId\": \"shire\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/thresholds/regions",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "thresholds", "regions"]
+            }
+          }
+        },
+        {
+          "name": "Register Mordor Region",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Mordor region created', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.regionId).to.eql('mordor');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"worldId\": \"middle-earth\",\n    \"regionId\": \"mordor\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/thresholds/regions",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "thresholds", "regions"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Location Registration",
+      "item": [
+        {
+          "name": "Register Bag End Location",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Location created successfully', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql('created');",
+                  "    pm.expect(jsonData.locationId).to.eql('bag-end');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"regionId\": \"shire\",\n    \"locationId\": \"bag-end\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/thresholds/locations",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "thresholds", "locations"]
+            }
+          }
+        },
+        {
+          "name": "Register Mount Doom Location",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Mount Doom location created', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.locationId).to.eql('mount-doom');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"regionId\": \"mordor\",\n    \"locationId\": \"mount-doom\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/thresholds/locations",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "thresholds", "locations"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Threshold Inheritance",
+      "item": [
+        {
+          "name": "Get Fantasy World Thresholds (Bag End)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Inherits FANTASY world type thresholds', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    ",
+                  "    // Fantasy has maxCharactersPerScene = 15",
+                  "    pm.expect(jsonData.maxCharactersPerScene).to.eql(15);",
+                  "    ",
+                  "    // Fantasy has dangerLevel = MEDIUM",
+                  "    pm.expect(jsonData.dangerLevel).to.eql('MEDIUM');",
+                  "    ",
+                  "    // Fantasy has minConfidence = 0.7 (inherited from global)",
+                  "    pm.expect(jsonData.minConfidence).to.eql(0.7);",
+                  "    ",
+                  "    // Fantasy has eventTriggerProbability = 0.15",
+                  "    pm.expect(jsonData.eventTriggerProbability).to.eql(0.15);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/thresholds/locations/bag-end",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "thresholds", "locations", "bag-end"]
+            }
+          }
+        },
+        {
+          "name": "Set Region Override (Mordor Danger Level)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Threshold override applied', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql('updated');",
+                  "    pm.expect(jsonData.key).to.eql('dangerLevel');",
+                  "    pm.expect(jsonData.value).to.eql('EXTREME');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"dimensionType\": \"REGION\",\n    \"dimensionId\": \"mordor\",\n    \"key\": \"dangerLevel\",\n    \"value\": \"EXTREME\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/thresholds/configuration",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "thresholds", "configuration"]
+            }
+          }
+        },
+        {
+          "name": "Verify Region Override Inheritance (Mount Doom)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Mount Doom inherits Mordor EXTREME danger level', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    ",
+                  "    // Region override should take precedence",
+                  "    pm.expect(jsonData.dangerLevel).to.eql('EXTREME');",
+                  "    ",
+                  "    // Other values still inherited from FANTASY",
+                  "    pm.expect(jsonData.maxCharactersPerScene).to.eql(15);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/thresholds/locations/mount-doom",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "thresholds", "locations", "mount-doom"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "AI Confidence Validation",
+      "item": [
+        {
+          "name": "Confidence Above Threshold (Should Pass)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('High confidence meets threshold', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    ",
+                  "    // 0.85 confidence should meet 0.7 threshold (FANTASY)",
+                  "    pm.expect(jsonData.meetsThreshold).to.be.true;",
+                  "    pm.expect(jsonData.confidence).to.eql(0.85);",
+                  "    pm.expect(jsonData.threshold).to.eql(0.7);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"locationId\": \"bag-end\",\n    \"confidence\": 0.85\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/thresholds/validate/confidence",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "thresholds", "validate", "confidence"]
+            }
+          }
+        },
+        {
+          "name": "Confidence Below Threshold (Should Fail)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Low confidence does not meet threshold', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    ",
+                  "    // 0.5 confidence should NOT meet 0.7 threshold",
+                  "    pm.expect(jsonData.meetsThreshold).to.be.false;",
+                  "    pm.expect(jsonData.confidence).to.eql(0.5);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"locationId\": \"bag-end\",\n    \"confidence\": 0.5\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/thresholds/validate/confidence",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "thresholds", "validate", "confidence"]
+            }
+          }
+        },
+        {
+          "name": "Confidence at Boundary (Exact Threshold)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Exact threshold value should pass', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    ",
+                  "    // 0.7 confidence should meet 0.7 threshold (boundary)",
+                  "    pm.expect(jsonData.meetsThreshold).to.be.true;",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"locationId\": \"bag-end\",\n    \"confidence\": 0.7\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/thresholds/validate/confidence",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "thresholds", "validate", "confidence"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Character Limit Validation",
+      "item": [
+        {
+          "name": "Can Add Character (Under Limit)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Can add character when under limit', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    ",
+                  "    // 10 characters, max is 15 for FANTASY",
+                  "    pm.expect(jsonData.canAddCharacter).to.be.true;",
+                  "    pm.expect(jsonData.currentCount).to.eql(10);",
+                  "    pm.expect(jsonData.maxAllowed).to.eql(15);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"locationId\": \"bag-end\",\n    \"currentCount\": 10\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/thresholds/validate/characters",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "thresholds", "validate", "characters"]
+            }
+          }
+        },
+        {
+          "name": "Cannot Add Character (At Limit)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Cannot add character when at limit', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    ",
+                  "    // 15 characters, max is 15 - at limit",
+                  "    pm.expect(jsonData.canAddCharacter).to.be.false;",
+                  "    pm.expect(jsonData.currentCount).to.eql(15);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"locationId\": \"bag-end\",\n    \"currentCount\": 15\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/thresholds/validate/characters",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "thresholds", "validate", "characters"]
+            }
+          }
+        },
+        {
+          "name": "Set Location Character Limit Override",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Location override applied', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.key).to.eql('maxCharactersPerScene');",
+                  "    pm.expect(jsonData.value).to.eql('5');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"dimensionType\": \"LOCATION\",\n    \"dimensionId\": \"bag-end\",\n    \"key\": \"maxCharactersPerScene\",\n    \"value\": \"5\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/thresholds/configuration",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "thresholds", "configuration"]
+            }
+          }
+        },
+        {
+          "name": "Verify Location Override Applied",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Location override now in effect', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    ",
+                  "    // 4 characters should be okay with new limit of 5",
+                  "    pm.expect(jsonData.canAddCharacter).to.be.true;",
+                  "    pm.expect(jsonData.maxAllowed).to.eql(5);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"locationId\": \"bag-end\",\n    \"currentCount\": 4\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/thresholds/validate/characters",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "thresholds", "validate", "characters"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Event Trigger Validation",
+      "item": [
+        {
+          "name": "Event Should Trigger (Low Random Value)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Event triggers when random < probability', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    ",
+                  "    // Random 0.1 < probability 0.15 = trigger",
+                  "    pm.expect(jsonData.shouldTrigger).to.be.true;",
+                  "    pm.expect(jsonData.probability).to.eql(0.15);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"locationId\": \"bag-end\",\n    \"randomValue\": 0.1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/thresholds/validate/event-trigger",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "thresholds", "validate", "event-trigger"]
+            }
+          }
+        },
+        {
+          "name": "Event Should Not Trigger (High Random Value)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Event does not trigger when random >= probability', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    ",
+                  "    // Random 0.5 > probability 0.15 = no trigger",
+                  "    pm.expect(jsonData.shouldTrigger).to.be.false;",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"locationId\": \"bag-end\",\n    \"randomValue\": 0.5\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/thresholds/validate/event-trigger",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "thresholds", "validate", "event-trigger"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

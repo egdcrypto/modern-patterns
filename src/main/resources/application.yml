@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: modern-patterns
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/patterns
+      auto-index-creation: true
+
+server:
+  port: 8080
+
+# Disable MongoDB auto-configuration for demo purposes
+spring.autoconfigure.exclude:
+  - org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration
+  - org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration
